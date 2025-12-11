@@ -25,7 +25,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Agreement to Terms</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              By accessing or using the services provided by DNCL-TECHZONE ("we," "us," or "our"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use our services.
+              By accessing or using the services provided by DNCL-TECHZONE (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, you may not access or use our services.
             </p>
             <p className="text-gray-700 leading-relaxed">
               These Terms apply to all visitors, users, and others who access or use our website, products, or services. Your use of our services constitutes acceptance of these Terms and our Privacy Policy.

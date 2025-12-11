@@ -57,7 +57,7 @@ export default function CaseStudies() {
       setVisibleIndex((prev) => (prev + 1) % caseStudies.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [caseStudies.length])
 
   return (
     <section ref={sectionRef} className="relative bg-gradient-to-b from-white via-gray-50 to-white py-20 md:py-32 overflow-hidden">
