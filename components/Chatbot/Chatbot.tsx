@@ -17,7 +17,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hello! I\'m here to help you learn about DNCL-Techzone\'s enterprise technology solutions. How can I assist you today?'
+      content: 'Hello! I&apos;m here to help you learn about DNCL-Techzone&apos;s enterprise technology solutions. How can I assist you today?'
     }
   ])
   const [showQuickActions, setShowQuickActions] = useState(true)
@@ -84,7 +84,7 @@ export default function Chatbot() {
       // Fallback if API fails
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: 'I apologize, but I\'m having trouble processing your request. Please contact us directly via WhatsApp at +1 (682) 561-6897 or email info@dncltechzone.com for immediate assistance.' 
+        content: 'I apologize, but I&apos;m having trouble processing your request. Please contact us directly via WhatsApp at +1 (682) 561-6897 or email info@dncltechzone.com for immediate assistance.' 
       }])
     } finally {
       setIsLoading(false)
@@ -94,7 +94,7 @@ export default function Chatbot() {
   const handleReset = () => {
     setMessages([{
       role: 'assistant',
-      content: 'Hello! I\'m here to help you learn about DNCL-Techzone\'s enterprise technology solutions. How can I assist you today?'
+      content: 'Hello! I&apos;m here to help you learn about DNCL-Techzone&apos;s enterprise technology solutions. How can I assist you today?'
     }])
     setSessionId(null)
     setShowQuickActions(true)
@@ -155,6 +155,7 @@ export default function Chatbot() {
             onClick={() => setIsMinimized(!isMinimized)}
             className="p-2 hover:bg-white/20 rounded-lg transition-colors"
             aria-label={isMinimized ? 'Expand' : 'Minimize'}
+            title={isMinimized ? 'Expand' : 'Minimize'}
           >
             <FiMinimize2 className="text-white" size={18} />
           </button>

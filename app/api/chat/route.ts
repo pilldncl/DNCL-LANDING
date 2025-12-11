@@ -19,8 +19,8 @@ const conversationStates = new Map<string, CachedState>()
 const CACHE_TTL = 30 * 60 * 1000 // 30 minutes
 const MAX_CACHE_SIZE = 1000 // Limit cache size
 
-// Clean up old sessions periodically
-setInterval(() => {
+// Clean up old sessions on-demand (serverless-friendly)
+function cleanupOldSessions() {
   const now = Date.now()
   for (const [sessionId, cached] of conversationStates.entries()) {
     if (now - cached.lastAccessed > CACHE_TTL) {
@@ -34,9 +34,11 @@ setInterval(() => {
     entries.slice(0, conversationStates.size - MAX_CACHE_SIZE)
       .forEach(([sessionId]) => conversationStates.delete(sessionId))
   }
-}, 5 * 60 * 1000) // Clean every 5 minutes
+}
 
 function getStateManager(sessionId: string): { manager: ConversationStateManager; cached: CachedState } {
+  // Clean up old sessions before getting/creating new ones
+  cleanupOldSessions()
   if (!conversationStates.has(sessionId)) {
     conversationStates.set(sessionId, {
       manager: new ConversationStateManager(),
@@ -55,7 +57,7 @@ export async function POST(request: NextRequest) {
     const { messages, sessionId } = await request.json()
 
     // Generate or use provided session ID
-    const chatSessionId = sessionId || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    const chatSessionId = sessionId || `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`
     const { manager: stateManager, cached } = getStateManager(chatSessionId)
 
     if (!messages || messages.length === 0) {
