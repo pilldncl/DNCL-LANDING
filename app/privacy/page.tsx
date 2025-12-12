@@ -85,7 +85,7 @@ export default function PrivacyPolicy() {
                 </div>
                 <div>
                   <a href="#children-privacy" className="text-blue-600 hover:text-blue-700 hover:underline font-medium text-sm block py-1">
-                    10. Children's Privacy
+                    10. Children&apos;s Privacy
                   </a>
                 </div>
                 <div>
@@ -109,7 +109,7 @@ export default function PrivacyPolicy() {
           <section id="introduction">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              DNCL-TECHZONE ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
+              DNCL-TECHZONE (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
             </p>
             <p className="text-gray-700 leading-relaxed">
               By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our services.
@@ -239,7 +239,7 @@ export default function PrivacyPolicy() {
 
           {/* Children's Privacy */}
           <section id="children-privacy">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">10. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">10. Children&apos;s Privacy</h2>
             <p className="text-gray-700 leading-relaxed">
               Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
             </p>
@@ -249,7 +249,7 @@ export default function PrivacyPolicy() {
           <section id="policy-updates">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Changes to This Privacy Policy</h2>
             <p className="text-gray-700 leading-relaxed">
-              We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the "Last Updated" date. Your continued use of our services after changes become effective constitutes acceptance of the updated policy.
+              We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the &quot;Last Updated&quot; date. Your continued use of our services after changes become effective constitutes acceptance of the updated policy.
             </p>
           </section>
 

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { FiAward, FiCheckCircle, FiShield, FiTrendingUp, FiUsers } from 'react-icons/fi'
+import { FiAward, FiCheckCircle, FiShield, FiTrendingUp, FiUsers, FiLock } from 'react-icons/fi'
 
 export const metadata: Metadata = {
   title: 'Certifications - DNCL Techzone',

@@ -240,7 +240,7 @@ export default function Compliance() {
               <li>Audit reports and findings (subject to confidentiality)</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-4">
-              Please contact our compliance team to request specific documentation for your organization's requirements.
+              Please contact our compliance team to request specific documentation for your organization&apos;s requirements.
             </p>
           </section>
 
