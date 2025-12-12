@@ -4,11 +4,12 @@ import { useState, useRef, useEffect } from 'react'
 import { FiMessageCircle, FiX, FiSend, FiMinimize2 } from 'react-icons/fi'
 import QuickActions from './QuickActions'
 import ResponseActions from './ResponseActions'
+import { ResponseAction } from '@/lib/chatbot/responseActions'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
-  actions?: Array<{ label: string; message: string; type: string }>
+  actions?: ResponseAction[]
 }
 
 export default function Chatbot() {

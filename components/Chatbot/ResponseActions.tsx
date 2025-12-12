@@ -1,10 +1,6 @@
 'use client'
 
-interface ResponseAction {
-  label: string
-  message: string
-  type: 'question' | 'navigation' | 'contact'
-}
+import { ResponseAction } from '@/lib/chatbot/responseActions'
 
 interface ResponseActionsProps {
   actions: ResponseAction[]
