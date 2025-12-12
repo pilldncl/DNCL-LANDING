@@ -1,4 +1,4 @@
-// File: C:\Users\dncl-sta11\Documents\DNCL-LANDINGPAGE\app\page.tsx
+// File: C:\Users\phuly\Documents\DNCL-Landing\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

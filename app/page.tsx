@@ -11,6 +11,7 @@ import TrustIndicators from '@/components/Landing/Certifications'
 import CTA from '@/components/Landing/CTA'
 import CaseStudies from '@/components/Landing/CaseStudies'
 import EnterpriseFeatures from '@/components/Landing/EnterpriseFeatures'
+import TikTokPopupAuto from '@/components/TikTokPopupAuto'
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
       <Industries />
       <Testimonials />
       <CTA />
+      
+      {/* TikTok Pop-up - Auto-loads from admin configuration */}
+      <TikTokPopupAuto />
     </div>
   )
 }
