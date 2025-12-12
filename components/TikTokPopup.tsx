@@ -8,6 +8,49 @@ import { FiX, FiExternalLink } from 'react-icons/fi'
  * Provides a clickable overlay to start video playback
  * Auto-hides after a few seconds or when clicked
  */
+/**
+ * Video play trigger - transparent overlay that allows clicks to pass through to video
+ * Shows a subtle hint that video is clickable
+ */
+function VideoPlayTrigger({ videoId }: { videoId: string }) {
+  const [showHint, setShowHint] = useState(true)
+  const overlayRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // Hide hint after 3 seconds
+    const timer = setTimeout(() => {
+      setShowHint(false)
+    }, 3000)
+    
+    return () => clearTimeout(timer)
+  }, [videoId])
+
+  // Let clicks pass through to the video - don't block them
+  return (
+    <div
+      ref={overlayRef}
+      className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center transition-opacity duration-500"
+      style={{ pointerEvents: 'none' }} // Allow clicks to pass through
+    >
+      {/* Subtle play button hint - fades out */}
+      {showHint && (
+        <div 
+          className="bg-black/50 backdrop-blur-sm rounded-full p-3 animate-pulse pointer-events-none"
+          style={{ opacity: showHint ? 1 : 0 }}
+        >
+          <svg
+            className="w-10 h-10 text-white ml-1"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function AutoPlayOverlay({ videoId }: { videoId: string }) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(true)
@@ -223,35 +266,71 @@ export default function TikTokPopup({
     return () => clearTimeout(timer)
   }, [delaySeconds, persistDismiss, storageKey])
 
-  // Load TikTok embed script and re-process embeds when video changes
+  // Load TikTok embed script and process embeds (native TikTok embeds should autoplay muted)
   useEffect(() => {
-    if (isVisible && typeof window !== 'undefined') {
-      // Load embed.js script
-      const loadScript = () => {
-        if (!document.querySelector('script[src*="tiktok.com/embed"]')) {
-          const script = document.createElement('script')
-          script.src = 'https://www.tiktok.com/embed.js'
-          script.async = true
-          script.onload = () => {
-            // Process embeds after script loads
-            if ((window as any).tiktokEmbed) {
-              (window as any).tiktokEmbed.lib.render(document.querySelectorAll('.tiktok-embed'))
-            }
-          }
-          document.head.appendChild(script)
-        } else {
-          // Script already loaded, re-render embeds
-          if ((window as any).tiktokEmbed) {
-            (window as any).tiktokEmbed.lib.render(document.querySelectorAll('.tiktok-embed'))
+    if (!isVisible || typeof window === 'undefined') return
+
+    // Load embed.js script (native TikTok method)
+    const existingScript = document.querySelector('script[src*="tiktok.com/embed"]')
+    
+    const processEmbeds = () => {
+      setTimeout(() => {
+        const embeds = document.querySelectorAll(`.tiktok-embed[data-video-id="${videoId}"]:not([data-embed-processed])`)
+        if ((window as any).tiktokEmbed && embeds.length > 0) {
+          try {
+            (window as any).tiktokEmbed.lib.render(embeds)
+            // Mark as processed
+            embeds.forEach((embed: Element) => {
+              embed.setAttribute('data-embed-processed', 'true')
+            })
+            
+            // Verify and ensure iframe is muted for autoplay
+            setTimeout(() => {
+              const iframes = document.querySelectorAll(`.tiktok-embed[data-video-id="${videoId}"] iframe`)
+              iframes.forEach((iframe: Element) => {
+                const iframeEl = iframe as HTMLIFrameElement
+                // TikTok's iframe should already be muted, but ensure it is
+                if (iframeEl) {
+                  iframeEl.setAttribute('muted', 'true')
+                  iframeEl.setAttribute('playsinline', 'true')
+                  
+                  // Try to access iframe content and ensure muted (may be blocked by CORS)
+                  try {
+                    const iframeDoc = iframeEl.contentDocument || iframeEl.contentWindow?.document
+                    if (iframeDoc) {
+                      const video = iframeDoc.querySelector('video') as HTMLVideoElement
+                      if (video) {
+                        video.muted = true
+                        video.playsInline = true
+                      }
+                    }
+                  } catch (e) {
+                    // CORS blocked - that's expected, TikTok handles it
+                  }
+                }
+              })
+            }, 500)
+          } catch (error) {
+            console.warn('TikTok embed render error:', error)
           }
         }
-      }
-
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(loadScript, 100)
-      return () => clearTimeout(timer)
+      }, 300)
     }
-  }, [isVisible, videoId]) // Re-run when videoId changes
+    
+    if (!existingScript) {
+      // Load script for the first time
+      const script = document.createElement('script')
+      script.src = 'https://www.tiktok.com/embed.js'
+      script.async = true
+      script.onload = () => {
+        processEmbeds()
+      }
+      document.head.appendChild(script)
+    } else {
+      // Script already loaded - process embeds
+      processEmbeds()
+    }
+  }, [isVisible, videoId])
 
   const handleClose = () => {
     setIsClosing(true)
@@ -334,15 +413,15 @@ export default function TikTokPopup({
           {/* TikTok Video Embed */}
           <div className="relative bg-black">
             <div className="w-full" style={{ paddingBottom: '177.78%' }}> {/* 9:16 aspect ratio */}
-              {/* Use official TikTok blockquote embed - most reliable method */}
+              {/* Official TikTok native embed - should autoplay muted by default */}
               <blockquote
                 className="tiktok-embed"
                 cite={tiktokVideoUrl}
                 data-video-id={videoId}
-                data-embed-type="video"
-                key={videoId} // Force re-render on video change
+                // TikTok's embed.js automatically handles muted autoplay
+                // The iframe generated by TikTok will have muted attribute
                 style={{ 
-                  maxWidth: '100%',
+                  maxWidth: '325px',
                   minWidth: '325px',
                   position: 'absolute',
                   top: 0,
@@ -356,13 +435,14 @@ export default function TikTokPopup({
                     target="_blank"
                     rel="noopener noreferrer"
                     href={tiktokVideoUrl}
-                    className="text-white"
                   >
-                    View on TikTok
+                    {`View on TikTok - @${username}`}
                   </a>
                 </section>
               </blockquote>
             </div>
+            {/* Clickable overlay - makes entire video area clickable to play */}
+            <VideoPlayTrigger videoId={videoId} />
           </div>
 
           {/* Footer - only if not minimal */}
