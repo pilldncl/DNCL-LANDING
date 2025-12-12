@@ -85,14 +85,16 @@ export default function Categories() {
 
         {/* CTA to Shop */}
         <div className="mx-auto mt-12 max-w-2xl text-center">
-          <Link
-            href="/shop"
+          <a
+            href="https://app.dncltechzone.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-md border-2 border-primary-300 bg-primary-50 px-6 py-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 hover:border-primary-400"
           >
             <FiShoppingCart size={16} />
-            <span>Shop These Categories on Our Retail Platforms</span>
+            <span>Browse All Categories in Our Catalog</span>
             <FiArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

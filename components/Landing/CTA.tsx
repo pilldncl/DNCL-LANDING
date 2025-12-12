@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FiArrowRight, FiMessageCircle, FiMail } from 'react-icons/fi'
+import { FiArrowRight, FiMessageCircle, FiMail, FiShoppingCart } from 'react-icons/fi'
 
 export default function CTA() {
   return (
@@ -22,9 +22,19 @@ export default function CTA() {
           </p>
           
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="https://app.dncltechzone.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-md bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-xl transition hover:bg-gray-50 hover:shadow-2xl"
+            >
+              <FiShoppingCart size={20} />
+              <span>Shop Now</span>
+              <FiArrowRight className="transition-transform group-hover:translate-x-1" />
+            </a>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-md bg-white px-8 py-4 text-base font-semibold text-primary-700 shadow-xl transition hover:bg-gray-50 hover:shadow-2xl"
+              className="group inline-flex items-center gap-2 rounded-md bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 text-base font-semibold text-white shadow-xl transition-all hover:bg-white/20 hover:border-white/50 hover:scale-105"
             >
               Request Enterprise Quote
               <FiArrowRight className="transition-transform group-hover:translate-x-1" />

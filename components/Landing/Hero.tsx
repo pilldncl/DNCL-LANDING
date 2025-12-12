@@ -83,23 +83,25 @@ export default function Hero() {
 
               {/* Enhanced CTA Buttons */}
               <div className="mt-10 flex flex-col items-center lg:items-start gap-4 sm:flex-row">
-                <Link
-                  href="/contact"
+                <a
+                  href="https://app.dncltechzone.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-4 text-base font-bold text-white shadow-2xl transition-all duration-300 hover:from-primary-500 hover:to-primary-600 hover:shadow-primary-500/50 hover:scale-105"
                 >
                   <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                   <span className="relative z-10 flex items-center gap-2">
-                    Request Enterprise Quote
+                    Shop Now
                     <FiArrowDown className="transform group-hover:translate-y-1 transition-transform" size={18} />
                   </span>
-                </Link>
+                </a>
                 <Link
-                  href="/shop"
+                  href="/contact"
                   className="group relative rounded-lg border-2 border-white/40 bg-white/10 backdrop-blur-md px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-white/20 hover:border-white/60 hover:scale-105 hover:shadow-xl"
                 >
                   <span className="flex items-center gap-2">
                     <FiShield className="text-primary-300" size={18} />
-                    Shop Our Stores
+                    Request Enterprise Quote
                   </span>
                 </Link>
               </div>

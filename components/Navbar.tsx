@@ -63,18 +63,25 @@ export default function Navbar() {
               <Link href="/about" className="text-sm font-semibold text-gray-800 transition hover:text-primary-700">
                 About
               </Link>
-              <Link href="/shop" className="text-sm font-semibold text-gray-800 transition hover:text-primary-700">
+              <a 
+                href="https://app.dncltechzone.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-gray-800 transition hover:text-primary-700"
+              >
                 Shop
-              </Link>
+              </a>
               <Link href="/contact" className="text-sm font-semibold text-gray-800 transition hover:text-primary-700">
                 Contact
               </Link>
-              <Link
-                href="/contact"
+              <a
+                href="https://app.dncltechzone.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-md bg-primary-700 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-800 hover:shadow-md"
               >
-                Request Quote
-              </Link>
+                Shop Now
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -90,21 +97,45 @@ export default function Navbar() {
           {/* Mobile Menu */}
           {isOpen && (
             <div className="md:hidden border-t border-gray-200 pb-4 pt-4">
-              {[
-                { href: '/', label: 'Home' },
-                { href: '/about', label: 'About' },
-                { href: '/shop', label: 'Shop' },
-                { href: '/contact', label: 'Contact' },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 hover:text-primary-700"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              <Link
+                href="/"
+                className="block px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 hover:text-primary-700"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="block px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 hover:text-primary-700"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <a
+                href="https://app.dncltechzone.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 hover:text-primary-700"
+                onClick={() => setIsOpen(false)}
+              >
+                Shop
+              </a>
+              <Link
+                href="/contact"
+                className="block px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 hover:text-primary-700"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </Link>
+              <a
+                href="https://app.dncltechzone.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-4 mt-3 flex items-center justify-center gap-2 rounded-md bg-primary-700 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-primary-800"
+                onClick={() => setIsOpen(false)}
+              >
+                Shop Now
+              </a>
               <a
                 href="https://wa.me/16825616897"
                 target="_blank"
@@ -117,7 +148,7 @@ export default function Navbar() {
               </a>
               <Link
                 href="/contact"
-                className="mx-4 mt-3 block rounded-md bg-primary-700 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-primary-800"
+                className="mx-4 mt-3 block rounded-md bg-gray-700 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 Request Quote

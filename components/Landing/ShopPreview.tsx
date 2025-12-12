@@ -110,16 +110,21 @@ export default function ShopPreview() {
 
           {/* CTA */}
           <div className="text-center">
-            <Link
-              href="/shop"
+            <a
+              href="https://app.dncltechzone.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 rounded-md bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-4 text-base font-semibold text-white shadow-xl transition-all hover:from-primary-700 hover:to-primary-800 hover:shadow-2xl hover:scale-105"
             >
               <FiShoppingCart size={20} />
-              <span>Browse All Our Retail Stores</span>
+              <span>Shop Our Full Catalog</span>
               <FiArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
             <p className="mt-4 text-sm text-gray-600">
-              Choose your preferred platform and shop with confidence
+              Browse products, add to cart, and complete transactions securely
+            </p>
+            <p className="mt-2 text-xs text-gray-500">
+              Also available on <Link href="/shop" className="text-primary-600 hover:underline">Amazon, Walmart & eBay</Link>
             </p>
           </div>
         </div>
