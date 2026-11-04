@@ -110,11 +110,6 @@ export default function Footer() {
                   Terms of Service
                 </Link>
               </li> */}
-              <li>
-                <Link href="/compliance" className="hover:text-white transition">
-                  Compliance
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
