@@ -115,11 +115,6 @@ export default function Footer() {
                   Compliance
                 </Link>
               </li>
-              <li>
-                <Link href="/certifications" className="hover:text-white transition">
-                  Certifications
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
